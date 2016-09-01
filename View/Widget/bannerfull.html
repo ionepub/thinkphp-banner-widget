@@ -1,0 +1,86 @@
+<!-- Swiper3 full slide widget -->
+<link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/Swiper/3.3.1/css/swiper.min.css">
+<script type="text/javascript" src="//cdn.bootcss.com/Swiper/3.3.1/js/swiper.min.js"></script>
+
+<style type="text/css">
+.swiper-container .swiper-slide img{
+    width:100%;
+}
+html, body {
+    position: relative;
+    height: 100%;
+}
+body {
+    background: #eee;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color:#000;
+    margin: 0;
+    padding: 0;
+}
+.swiper-container.swiper-banner{$bannerId} {
+    width: 100%;
+    height: 100%;
+}
+</style>
+
+<div class="swiper-container swiper-banner{$bannerId}">
+	<div class="swiper-wrapper">
+		<foreach name="list" item="item">
+        	<div class="swiper-slide">
+                <a href="{$item.data.link|default='javascript:void(0)'}"><img src="{$item.src}"></a>
+        	</div>
+        </foreach>
+    </div>
+    <if condition="$config.pagination neq 'hide'">
+    <!-- 分页器 -->
+    <div class="swiper-pagination"></div>
+    </if>
+
+    <if condition="$config.nav eq 'show'">
+    <!-- 导航按钮 -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    </if>
+
+    <!-- 滚动条 -->
+    <!-- <div class="swiper-scrollbar"></div> -->
+</div>
+<script>        
+  var mySwiper = new Swiper ('.swiper-container.swiper-banner{$bannerId}', {
+    <if condition="$config.direction eq 'vertical'">
+    direction: 'vertical',
+    </if>
+
+    <if condition="$config.loop eq 1">
+    loop: true,
+    </if>
+
+    <if condition="$config.autoplay elt 0">
+    autoplay: false,
+    <else/>
+    autoplay: {$config.autoplay|default=1000},
+    </if>
+
+    <if condition="$config.speed gt 0">
+    speed: {$config.speed},
+    </if>
+
+    <if condition="$config.pagination neq 'hide'">
+    // 分页器
+    pagination: '.swiper-banner{$bannerId} .swiper-pagination',
+    </if>
+
+    <if condition="$config.nav eq 'show'">
+    // 前进后退按钮
+    nextButton: '.swiper-banner{$bannerId} .swiper-button-next',
+    prevButton: '.swiper-banner{$bannerId} .swiper-button-prev',
+    </if>
+
+    // 滚动条
+    // scrollbar: '.swiper-banner{$bannerId} .swiper-scrollbar',
+
+    // 鼠标控制
+    mousewheelControl: true,
+  })        
+</script>

@@ -1,0 +1,74 @@
+<!-- Swiper3 slide widget -->
+<link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/Swiper/3.3.1/css/swiper.min.css">
+<script type="text/javascript" src="//cdn.bootcss.com/Swiper/3.3.1/js/swiper.min.js"></script>
+
+<style type="text/css">
+.swiper-container.swiper-banner{$bannerId} {
+    width: {$config.width|default='480'}px;
+    height: {$config.height|default='300'}px;
+} 
+.swiper-container .swiper-slide img{
+    width:100%;
+}
+</style>
+
+<div class="swiper-container swiper-banner{$bannerId}">
+	<div class="swiper-wrapper">
+		<foreach name="list" item="item">
+        	<div class="swiper-slide">
+                <a href="{$item.data.link|default='javascript:void(0)'}" target="_blank"><img src="{$item.src}" title="{$item.title}"></a>
+        	</div>
+        </foreach>
+    </div>
+    <if condition="$config.pagination neq 'hide'">
+    <!-- 分页器 -->
+    <div class="swiper-pagination"></div>
+    </if>
+
+    <if condition="$config.nav eq 'show'">
+    <!-- 导航按钮 -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    </if>
+
+    <!-- 滚动条 -->
+    <!-- <div class="swiper-scrollbar"></div> -->
+</div>
+<script>        
+  var mySwiper = new Swiper ('.swiper-container.swiper-banner{$bannerId}', {
+    <if condition="$config.direction eq 'vertical'">
+    direction: 'vertical',
+    </if>
+
+    <if condition="$config.loop eq 1">
+    loop: true,
+    </if>
+
+    <if condition="$config.autoplay lt 0">
+    autoplay: false,
+    <else/>
+    autoplay: {$config.autoplay|default=1000},
+    </if>
+
+    <if condition="$config.speed gt 0">
+    speed: {$config.speed},
+    </if>
+
+    <if condition="$config.pagination neq 'hide'">
+    // 分页器
+    pagination: '.swiper-banner{$bannerId} .swiper-pagination',
+    </if>
+
+    <if condition="$config.nav eq 'show'">
+    // 前进后退按钮
+    nextButton: '.swiper-banner{$bannerId} .swiper-button-next',
+    prevButton: '.swiper-banner{$bannerId} .swiper-button-prev',
+    </if>
+
+    // 滚动条
+    // scrollbar: '.swiper-banner{$bannerId} .swiper-scrollbar',
+
+    // 鼠标控制
+    // mousewheelControl: true,
+  })        
+</script>
