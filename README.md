@@ -8,14 +8,15 @@
 
 ## 使用方法
 
-1. 将 `View` 和 `Widget` 文件夹复制到模块目录下，如`Application\Home\`
-2. 如果不是将部件放到Home模块下，需要打开`Widget\BannerWidget.class.php` ，修改namespace位置
+1、将 `View` 和 `Widget` 文件夹复制到模块目录下，如`Application\Home\`
+
+2、如果不是将部件放到Home模块下，需要打开`Widget\BannerWidget.class.php` ，修改namespace位置
 
 ```php
 namespace YourModel\Widget;
 ```
 
-3. 需要在数据库中增加`prefix_banner` 表，表结构如下：
+3、需要在数据库中增加`prefix_banner` 表，表结构如下：
 
 ```sql
 CREATE TABLE `prefix_banner` (
@@ -47,7 +48,7 @@ private $modelname = 'banner';
   - 如果pid不为0（某一个轮播图文件），则可以在src字段添加图片地址
   - 如果pid不为0（某一个轮播图文件），则可以在data字段添加配置信息（json格式），如图片超链接地址`{"link":"http://www.baidu.com"}`
 
-4. 在数据表中添加一些示例数据之后，可以使用如下方法调用部件
+4、在数据表中添加一些示例数据之后，可以使用如下方法调用部件
 
 ```php+HTML
 ## 其中$bannerId为轮播图位置id，$width $height为轮播图的宽高（需配合模板css样式）
